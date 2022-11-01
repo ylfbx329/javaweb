@@ -32,7 +32,7 @@ public class CharacterEncodingFilter implements Filter {
         // 清除缓存
         httpServletResponse.setDateHeader("Expires", 0);
         // 注意这里是两个，很多博客少了no-store是不成功的
-        httpServletResponse.setHeader("Cache-Control", "no-cache, no-store");
+        httpServletResponse.setHeader("Cache-Control", "no-store");
         httpServletResponse.setHeader("Pragma", "no-cache");
 
         if (this.encoding != null && (this.forceEncoding || request.getCharacterEncoding() == null)) {
