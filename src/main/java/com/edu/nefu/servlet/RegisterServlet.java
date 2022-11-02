@@ -25,6 +25,9 @@ public class RegisterServlet extends HttpServlet {
         } catch (Exception e) {
             register = 0;
         }
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-store");
+        response.setDateHeader("Expires", 0);
         if (register > 0) {
             response.sendRedirect("/ex7/login_servlet/register_success.html");
         } else {

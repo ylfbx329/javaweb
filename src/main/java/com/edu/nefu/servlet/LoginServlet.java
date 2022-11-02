@@ -23,16 +23,14 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             login = false;
         }
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-store");
+        response.setDateHeader("Expires", 0);
         if (login) {
-            response.setHeader("Pragma", "no-cache");
-            response.setHeader("Cache-Control", "no-cache");
-            response.setDateHeader("Expires", -1);
+            request.getSession().setAttribute("user", user);
             response.sendRedirect("/ex7/login_servlet/login_success.html");
         } else {
             out.print("用户名密码不正确，3秒钟后重新登录");
-            response.setHeader("Pragma", "no-cache");
-            response.setHeader("Cache-Control", "no-cache");
-            response.setDateHeader("Expires", -1);
             response.setHeader("refresh", "3;URL=ex7/login_servlet/login.html");
         }
     }
