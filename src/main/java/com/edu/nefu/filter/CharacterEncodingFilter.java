@@ -37,7 +37,7 @@ public class CharacterEncodingFilter implements Filter {
         if (this.encoding != null && (this.forceEncoding || request.getCharacterEncoding() == null)) {
             request.setCharacterEncoding(this.encoding);
             if (this.forceEncoding) {
-                response.setContentType("text/html;charset=" + this.encoding);
+                response.setCharacterEncoding(this.encoding);
             }
         }
         String string = String.valueOf(httpServletRequest.getRequestURL());

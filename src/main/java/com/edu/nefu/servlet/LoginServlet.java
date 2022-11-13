@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         PrintWriter out = response.getWriter();
         User user = new User(request.getParameter("un"), request.getParameter("pw"));
         boolean login;
@@ -23,12 +22,9 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             login = false;
         }
-        response.setHeader("Pragma", "no-cache");
-        response.setHeader("Cache-Control", "no-store");
-        response.setDateHeader("Expires", 0);
         if (login) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/ex7/login_servlet/login_success.html");
+            response.sendRedirect("/javaweb_war_exploded/ex7/login_servlet/login_s.html");
         } else {
             out.print("用户名密码不正确，3秒钟后重新登录");
             response.setHeader("refresh", "3;URL=ex7/login_servlet/login.html");

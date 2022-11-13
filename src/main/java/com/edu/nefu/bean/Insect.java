@@ -61,7 +61,7 @@ public class Insect {
     }
 
     public double getNumInsect() {
-        return numInsect;
+        return Math.round(numInsect * 100) / 100.0;
     }
 
     public void setNumInsect() {

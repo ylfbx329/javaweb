@@ -10,7 +10,7 @@
 
         function check() {
             let formData = $("input[type=text]");
-            let num = /^(\d+\.?\d*)$/;
+            let num = /^-?(\d+\.?\d*)$/;
             let submit = true;
             // 遍历检查表单元素
             formData.each(function (idx, ele) {

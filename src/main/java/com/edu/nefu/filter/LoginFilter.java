@@ -22,16 +22,16 @@ public class LoginFilter implements Filter {
         HttpServletRequest rq = (HttpServletRequest) request;
         HttpServletResponse rp = (HttpServletResponse) response;
         HttpSession session = rq.getSession();
-        String passURL = rq.getServletPath();
+        String passURL = rq.getRequestURI().replace(rq.getContextPath(), "");
         PrintWriter out = rp.getWriter();
-        out.print(passURL + "<BR>");
-        if (!(passURL.equals("/ex7/login_servlet/login.html") || passURL.equals("/LoginServlet"))) {
-            if (session.getAttribute("user") == null) {
-                out.print("先登录");
-                rp.setHeader("refresh", "5;url=ex7/login_servlet/login.html");
-                return;
-            }
+        if (session.getAttribute("user") != null || passURL.equals("/ex7/login_servlet/login.html") || passURL.equals("/ex7/login_servlet/register.html") || passURL.equals("/ex7/login_servlet/register_s.html") || passURL.equals("/ex7/login_servlet/form.css") || passURL.equals("/LoginServlet") || passURL.equals("/RegisterServlet")) {
+            chain.doFilter(request, response);
+        } else {
+            response.setContentType("text/plain;charset=UTF-8");
+            out.print("先登录");
+            out.flush();
+            out.close();
+            rp.setHeader("refresh", "5;url=ex7/login_servlet/login.html");
         }
-        chain.doFilter(request, response);
     }
 }
